@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Список книг</title>
+</head>
+<body>
+
+<div th:each="book : ${books}">
+    <a th:href="@{/books/{id}(id=${book.getId()})}"
+       th:text="${book.getTitle()+', '+book.getAuthor()+', '+book.getYear()}">book</a>
+</div>
+<br/>
+
+<span>Сортировать по </span>
+<br/>
+<a href="/books?sort_by_year=true">Году издания </a>
+<br/>
+<a href="/books?sort_by_title=true">Названию</a>
+<br/>
+<br/>
+<span>Показывать по </span>
+<a href="books?page=0&books_per_page=3">3 </a>
+<a href="books?page=0&books_per_page=5">5 </a>
+<a href="books?page=0&books_per_page=7">7 </a>
+<a href="books?page=0&books_per_page=10">10 </a>
+<span>книг на странице</span>
+
+<hr/>
+
+<form action="/books/new">
+    <button>Добавить новую книгу</button>
+</form>
+<br/>
+
+</body>
+</html>
